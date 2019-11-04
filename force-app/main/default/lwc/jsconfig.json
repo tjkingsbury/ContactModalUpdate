@@ -1,7 +1,11 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
-        "paths": {},
+        "paths": {
+            "c/contactDataTable": [
+                "contactDataTable/contactDataTable.js"
+            ]
+        },
         "experimentalDecorators": true
     },
     "include": [
