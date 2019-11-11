@@ -1,6 +1,6 @@
 <template>
     <lightning-card title="Contacts" icon-name="standard:contact">
-        <lightning-datatable data={contacts.data}
+        <lightning-datatable data={contacts}
             columns={columns}
             key-field="id"
             hide-checkbox-column="true"
@@ -24,8 +24,18 @@
                       <!-- modal body start -->
                       <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                         <dl class="slds-list_horizontal slds-wrap">
-                            <dt class="slds-item_label slds-truncate" title="Name">Name:</dt>
-                            <dd class="slds-item_detail slds-truncate">{record.FirstName}</dd>
+                            <lightning-record-edit-form layout-type="Full" record-id={currentRecordId} object-api-name="Contact" onsubmit={handleSubmit} onsuccess={handleSuccess}>
+                                <lightning-messages></lightning-messages>
+                                <lightning-input-field field-name="FirstName"></lightning-input-field>
+                                
+                                <div style="text-align:center;">
+                                    <lightning-button class="slds-m-top_small"
+                                                      variant="brand"
+                                                      type="submit"
+                                                      name="update"
+                                                      label="Update Record"></lightning-button>
+                                </div>
+                            </lightning-record-edit-form><br/>
                             
                         </dl>
                       </div>

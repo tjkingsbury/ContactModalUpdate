@@ -24,15 +24,31 @@ export default class ContactDataTable extends LightningElement {
     @api recordId;
     @track columns = columns;
     @track bShowModal = false;
+    @track currentRecordId;
+    @track contacts;
+    @track error;
+
+
+    wiredContactsResult;
 
     @wire(getContacts,{ accountId: '$recordId'})
-    contacts;
+    wiredContacts(result){
+        this.wiredContactsResult = result;
+        if(result.data){
+            this.contacts = result.data;
+            this.error = undefined;
+        } else if(result.error){
+            this.error = result.error;
+            this.contacts = undefined;
+        }
+    }
 
 
     handleRowAction(event){
         const row = event.detail.row;
         this.record = row;
         this.bShowModal = true;
+        this.editCurrentRecord(row);
     }
 
     // closing modal box
@@ -56,7 +72,11 @@ export default class ContactDataTable extends LightningElement {
     }
 
     handleSuccess() {
-        return refreshApex(this.refreshTable);
+        return refreshApex(this.wiredContactsResult);
+    }
+
+    editCurrentRecord(currentRow){
+        this.currentRecordId = currentRow.Id;
     }
     
 }
