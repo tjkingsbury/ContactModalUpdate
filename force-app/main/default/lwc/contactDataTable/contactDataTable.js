@@ -58,15 +58,11 @@ export default class ContactDataTable extends LightningElement {
 
     handleSubmit(event){
         event.preventDefault();
-
         this.template.querySelector('lightning-record-edit-form').submit(event.detail.fields);
-
-
         this.bShowModal = false;
-
         this.dispatchEvent(new ShowToastEvent({
             title: 'Success!!',
-            message: event.detail.fields.FirstName + ' '+ event.detail.fields.LastName +' Contact updated Successfully!!.',
+            message: event.detail.fields.FirstName +' Contact updated Successfully!!.',
             variant: 'success'
         }),);
     }
