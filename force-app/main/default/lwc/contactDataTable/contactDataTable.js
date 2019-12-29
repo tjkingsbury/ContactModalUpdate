@@ -62,7 +62,7 @@ export default class ContactDataTable extends LightningElement {
         this.bShowModal = false;
         this.dispatchEvent(new ShowToastEvent({
             title: 'Success!!',
-            message: event.detail.fields.FirstName +' Contact updated Successfully!!.',
+            message: event.detail.fields.FirstName +' Contact updated Successfully!!',
             variant: 'success'
         }),);
     }
